@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Detalle del Producto</title>
+  <link rel="stylesheet" href="css/style_producto.css" />
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">
+        <img src="img/logo.png" alt="Logo" width="30">
+        <span>Farmacia San Martín</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <main class="detalle-container">
+    <div class="galeria">
+      <img class="imagen-principal" src="https://www.farmaciassanchezantoniolli.com.ar/10123-medium_default/tafirol-x30-comp.jpg" alt="Tafirol">
+      <div class="miniaturas">
+        <img src="https://www.anikashop.com.ar/product_images/v/997/open-uri20220304-146-t0pzuv__25093_zoom.png" alt="Miniatura 1">
+        <img src="https://www.anikashop.com.ar/product_images/v/997/open-uri20220304-146-t0pzuv__25093_zoom.png" alt="Miniatura 2">
+        <img src="https://www.anikashop.com.ar/product_images/v/997/open-uri20220304-146-t0pzuv__25093_zoom.png" alt="Miniatura 3">
+      </div>
+    </div>
+
+    <div class="info-producto">
+      <h1>Paracetamol 500mg (Caja x30)</h1>
+      <p class="precio">$800</p>
+      <p class="descripcion">
+        Analgésico y antipirético para dolores leves a moderados, fiebre y malestar general.
+        Apto para mayores de 12 años. Uso oral.
+      </p>
+      <p><strong>Stock disponible</strong></p>
+      <p><strong>Categoría:</strong> Medicamentos</p>
+
+      <div class="fila-cantidad">
+        <span class="etiqueta-cantidad"><strong>Cantidad:</strong></span>
+        <div class="cantidad-elegante">
+          <button class="btn-cantidad minus">−</button>
+          <span class="valor-cantidad">1</span>
+          <button class="btn-cantidad plus">+</button>
+        </div>
+      </div>
+
+      <div class="contenedor-boton">
+        <button class="agregar-carrito"><strong>Agregar al Carrito</strong></button>
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container-footer">
+      <p>© 2025 Farmacia San Martín - Jujuy</p>
+    </div>
+  </footer>
+
+  <script>
+    const cantidadBox = document.querySelector('.cantidad-elegante');
+    const valorSpan = cantidadBox.querySelector('.valor-cantidad');
+    const btnMas = cantidadBox.querySelector('.btn-cantidad.plus');
+    const btnMenos = cantidadBox.querySelector('.btn-cantidad.minus');
+
+    btnMas.addEventListener('click', () => {
+      let actual = parseInt(valorSpan.textContent);
+      if (actual < 99) valorSpan.textContent = actual + 1;
+    });
+
+    btnMenos.addEventListener('click', () => {
+      let actual = parseInt(valorSpan.textContent);
+      if (actual > 1) valorSpan.textContent = actual - 1;
+    });
+  </script>
+</body>
+</html>
