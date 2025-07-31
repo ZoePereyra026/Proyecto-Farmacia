@@ -54,3 +54,12 @@ Content-Type: application/json
 ### Buscar productos por fragmentos de categoría
 GET http://localhost:3000/api/productos/buscar?categoria=analg,vita
 Content-Type: application/json
+
+### Filtrar productos por nombre de fabricante
+GET http://localhost:3000/api/productos/filtrar/fabricante?fabricante=Pfizer
+Content-Type: application/json
+
+### Filtrar productos por rango de precio
+GET http://localhost:3000/api/productos/filtrar/precio?precioMin=100&precioMax=500
+Content-Type: application/json
+

@@ -21,4 +21,10 @@ router.put("/:id", productoController.actualizarProducto); // Si funciona
 // Eliminar producto
 router.delete("/:id", productoController.eliminarProducto); // Si funciona
 
+// Buscar productos por fabricante
+router.get("/filtrar/fabricante", productoController.obtenerProductosPorFabricante);
+
+// Buscar productos por rango de precio
+router.get("/filtrar/precio", productoController.obtenerProductosPorRangoPrecio);
+
 module.exports = router;
