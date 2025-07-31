@@ -1,6 +1,32 @@
 const Producto = require("../models/productoModels");
 
-// Crear un nuevo producto
+// Buscar productos por categoría dentro del array 'categoria'
+const obtenerProductosPorCategoria = async (req, res) => {
+  try {
+    const query = req.query.categoria;
+
+    if (!query) {
+      return res.status(400).json({ error: "Debe proporcionar al menos un término de categoría." });
+    }
+
+    const fragmentos = query.split(",").map(fragmento =>
+      new RegExp(fragmento.trim(), "i") 
+    );
+
+    const productos = await Producto.find({
+      categoria: { $elemMatch: { $in: fragmentos } }
+    });
+
+    if (productos.length === 0) {
+      return res.status(404).json({ mensaje: "No se encontraron productos con esas categorías." });
+    }
+
+    res.json(productos);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 // Crear un nuevo producto
 const crearProducto = async (req, res) => {
   try {
@@ -107,6 +133,7 @@ const eliminarProducto = async (req, res) => {
 };
 
 module.exports = {
+  obtenerProductosPorCategoria,
   crearProducto,
   obtenerProductos,
   obtenerProductoPorId,

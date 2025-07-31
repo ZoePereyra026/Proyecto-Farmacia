@@ -3,6 +3,9 @@ const productoController = require("../controllers/productoController");
 
 const router = Router();
 
+// Buscar productos por categoría
+router.get("/buscar", productoController.obtenerProductosPorCategoria); // Si funciona
+
 // Crear producto
 router.post("/", productoController.crearProducto); // Si funciona
 
