@@ -1,10 +1,12 @@
 const express = require("express");
 require("dotenv").config();
 
-const { connUsuario, connProducto, connCategoria } = require("./config/database");
+const { connUsuario, connProducto, connCategoria, connCarrito} = require("./config/database");
 const userRoutes = require("./routes/userRoutes");
 const productoRoutes = require("./routes/productoRoutes");
 const categoriaRoutes = require("./routes/categoriaRoutes"); 
+const carritoRoutes = require("./routes/carritoRoutes");
+const { verificarToken } = require("./middleware/authMiddleware");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -22,16 +24,28 @@ connProducto.once("open", () => {
 connCategoria.once("open", () => {
   console.log("Conectado a base de datos: Categoria");
 });
+connCarrito.once("open", () => {
+  console.log("Conectado a base de datos: Carrito");
+});
 
 // Ruta principal
 app.get("/", (req, res) =>
   res.json({ message: "Bienvenidos a la API REST de eCommerce - Farmacia San Martín!" })
 );
 
+// Middleware global
+app.use("/api", verificarToken);
+
 // Rutas
 app.use("/api/usuarios", userRoutes);
 app.use("/api/productos", productoRoutes);
 app.use("/api/categorias", categoriaRoutes); 
+app.use("/api/carritos", carritoRoutes);
+
+// Manejo de errores 404
+app.use((req, res) => {
+  res.status(404).json({ error: "Ruta no encontrada" });
+});
 
 // Iniciar el servidor
 app.listen(PORT, () => {
