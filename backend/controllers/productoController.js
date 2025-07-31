@@ -132,11 +132,66 @@ const eliminarProducto = async (req, res) => {
   }
 };
 
+// Buscar productos por fabricante
+const obtenerProductosPorFabricante = async (req, res) => {
+  try {
+    const { fabricante } = req.query;
+
+    if (!fabricante) {
+      return res.status(400).json({ error: "Se debe porporcionar el nombre del fabricante." });
+    }
+
+    const productos = await Producto.find({
+      fabricante: { $regex: new RegExp(fabricante, "i") } 
+    });
+
+    if (productos.length === 0) {
+      return res.status(404).json({ mensaje: "No se han encontrado productos de ese fabricante" });
+    }
+
+    res.json(productos);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+// Buscar productos por rango de precio
+const obtenerProductosPorRangoPrecio = async (req, res) => {
+  try {
+    const { precioMin, precioMax } = req.query;
+
+    // Validar que al menos un límite de precio esté presente
+    if (!precioMin && !precioMax) {
+      return res.status(400).json({ error: "Se debe proporcionar al menos un límite de precio" });
+    }
+
+    const precioFiltro = {};
+    if (precioMin) precioFiltro.$gte = Number(precioMin);
+    if (precioMax) precioFiltro.$lte = Number(precioMax);
+
+    const filtro = { precio: precioFiltro };
+
+    // Buscar productos con el filtro
+    const productos = await Producto.find(filtro);
+
+    if (productos.length === 0) {
+      return res.status(404).json({ mensaje: "No se han encontrado productos que se encuentren en este rango de precio" });
+    }
+
+    res.json(productos);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
+
 module.exports = {
   obtenerProductosPorCategoria,
   crearProducto,
   obtenerProductos,
   obtenerProductoPorId,
   actualizarProducto,
-  eliminarProducto
+  eliminarProducto,
+  obtenerProductosPorFabricante,
+  obtenerProductosPorRangoPrecio
 };
