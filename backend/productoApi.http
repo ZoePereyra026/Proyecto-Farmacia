@@ -50,3 +50,7 @@ Content-Type: application/json
 ### Eliminar producto por ID
 DELETE http://localhost:3000/api/productos/50
 Content-Type: application/json
+
+### Buscar productos por fragmentos de categoría
+GET http://localhost:3000/api/productos/buscar?categoria=analg,vita
+Content-Type: application/json
