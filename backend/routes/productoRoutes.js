@@ -28,6 +28,6 @@ router.get("/filtrar/fabricante", productoController.obtenerProductosPorFabrican
 router.get("/filtrar/precio", productoController.obtenerProductosPorRangoPrecio); // Si funciona
 
 // Actualizar solo el stock de un producto por su ID
-router.put("/stock/:id", productoController.actualizarStockProducto);
+router.put("/stock/:id", productoController.actualizarStockProducto); // Si funciona
 
 module.exports = router;
