@@ -22,9 +22,12 @@ router.put("/:id", productoController.actualizarProducto); // Si funciona
 router.delete("/:id", productoController.eliminarProducto); // Si funciona
 
 // Buscar productos por fabricante
-router.get("/filtrar/fabricante", productoController.obtenerProductosPorFabricante);
+router.get("/filtrar/fabricante", productoController.obtenerProductosPorFabricante); // Si funciona 
 
 // Buscar productos por rango de precio
-router.get("/filtrar/precio", productoController.obtenerProductosPorRangoPrecio);
+router.get("/filtrar/precio", productoController.obtenerProductosPorRangoPrecio); // Si funciona
+
+// Actualizar solo el stock de un producto por su ID
+router.put("/stock/:id", productoController.actualizarStockProducto); // Si funciona
 
 module.exports = router;
