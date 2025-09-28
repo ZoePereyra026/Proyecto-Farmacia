@@ -21,14 +21,17 @@ const UsuarioSchema = new mongoose.Schema({
     enum: ["user", "admin"],
     default: "user"
   }
-});
+}, { timestamps: true });
 
+// Encriptar contraseña antes de guardarla en la base de datos
 UsuarioSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
   this.password = await bcrypt.hash(this.password, 10);
   next();
 });
 
-const Usuario = mongoose.model("Usuario", UsuarioSchema, "usuarios");
+const { connUsuario } = require("../config/database");
+const Usuario = connUsuario.model("Usuario", UsuarioSchema, "usuarios");
+
 
 module.exports = Usuario;
