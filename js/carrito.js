@@ -44,7 +44,14 @@ document.addEventListener("DOMContentLoaded", () => {
     listEl.innerHTML = "";
 
     if (!cart.length) {
-      listEl.innerHTML = `<p class="empty">Tu carrito está vacío</p>`;
+      listEl.innerHTML = `
+        <div class="carrito-vacio">
+          <i class="fas fa-shopping-cart icono-vacio"></i>
+          <h3>Tu carrito está vacío</h3>
+          <p>Agregá productos para comenzar tu compra.</p>
+          <a href="productos.html" class="btn-volver">Volver al catálogo</a>
+        </div>
+      `;
       subtotalEl.textContent = money(0);
       totalEl.textContent = money(0);
       return;

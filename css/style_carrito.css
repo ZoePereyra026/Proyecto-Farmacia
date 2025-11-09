@@ -166,6 +166,68 @@ footer p {
   color: black;
 }
 
+button.remove,
+#btnClearCart {
+  background-color: var(--celeste);
+  color: white;
+  border: none;
+  padding: 10px 18px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.remove:hover,
+#btnClearCart:hover {
+  background-color: #4fc7ec; 
+}
+
+.carrito-vacio {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #f8f8f8;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  margin: 30px auto;
+  max-width: 500px;
+  color: #555;
+}
+
+.carrito-vacio h3 {
+  color: var(--azul-profundo);
+  font-size: 22px;
+  margin-top: 15px;
+}
+
+.carrito-vacio p {
+  font-size: 16px;
+  margin-top: 10px;
+}
+
+.icono-vacio {
+  font-size: 60px;
+  color: var(--celeste);
+  opacity: 0.6;
+  margin-bottom: 10px;
+}
+
+.btn-volver {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: var(--celeste);
+  color: white;
+  text-decoration: none;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn-volver:hover {
+  background-color: #4fc7ec;
+}
+
 /*Diseño Responsive*/
 
 /* Dispositivos hasta 768px */

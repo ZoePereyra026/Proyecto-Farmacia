@@ -107,7 +107,7 @@ const inicializarBuscador = () => {
     aplicarFiltros();
   });
 
-  inputBusqueda.addEventListener("input", aplicarFiltros); // ← actualiza al escribir o borrar
+  inputBusqueda.addEventListener("input", aplicarFiltros); 
 };
 
 // Inicializar al cargar la página
