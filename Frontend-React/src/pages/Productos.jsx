@@ -1,7 +1,10 @@
 import React from 'react'
+import Navbar from '../components/NavBar';
 
 export default function Productos() {
   return (
-    <div>Productos</div>
+    <div>
+      <Navbar />
+    </div>
   )
 }

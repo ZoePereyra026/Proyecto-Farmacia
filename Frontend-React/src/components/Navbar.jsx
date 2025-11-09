@@ -1,8 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import '../css/style_navbar.css';
 
 export default function Navbar() {
   const [cartCount, setCartCount] = useState(0);
+  const [query, setQuery] = useState('');
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const mostrarBuscador = location.pathname === '/productos';
 
   useEffect(() => {
     try {
@@ -17,12 +23,19 @@ export default function Navbar() {
     }
   }, []);
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (query.trim()) {
+      navigate(`/buscar?q=${encodeURIComponent(query.trim())}`);
+    }
+  };
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light border-bottom">
       <div className="container">
-        <Link className="navbar-brand fw-bold text-success d-flex align-items-center" to="/">
+        <Link className="navbar-brand d-flex align-items-center" to="/">
           <img src="/img/logo.png" alt="Logo" width="30" className="me-2" />
-          Farmacia San Martín
+          <span className="fw-bold text-success">Farmacia San Martín</span>
         </Link>
 
         <button
@@ -38,8 +51,26 @@ export default function Navbar() {
         </button>
 
         <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav me-auto"></ul>
-          <ul className="navbar-nav">
+          {mostrarBuscador && (
+            <form
+              className="buscador-wrapper d-flex align-items-center gap-2 me-auto"
+              role="search"
+              onSubmit={handleSearch}
+            >
+              <input
+                className="form-control buscador"
+                type="search"
+                name="q"
+                placeholder="¿Qué estás buscando?"
+                aria-label="Buscar"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+              />
+              <button className="btn btn-success" type="submit">Buscar</button>
+            </form>
+          )}
+
+          <ul className="navbar-nav ms-auto">
             <li className="nav-item d-flex align-items-center">
               <Link className="nav-link position-relative" to="/carrito">
                 <div style={{ position: 'relative', paddingTop: '4px', minWidth: '32px' }}>
