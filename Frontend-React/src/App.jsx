@@ -3,8 +3,9 @@ import Home from './pages/Home'
 import Productos from './pages/Productos'
 import Detalle from './pages/Detalle'
 import Carrito from './pages/Carrito'
-import Inicio from './pages/Inicio'
+import Sesion from './pages/Sesion'
 import Registro from './pages/Registro'
+import '../css/style_index.css';
 
 export default function App() {
   return (
@@ -14,7 +15,7 @@ export default function App() {
           <Route path="/productos" element={<Productos />} />
           <Route path="/producto/:id" element={<Detalle />} />
           <Route path="/carrito" element={<Carrito />} />
-          <Route path="/inicio" element={<Inicio />} />
+          <Route path="/sesion" element={<Sesion />} />
           <Route path="/registro" element={<Registro />} />
         </Routes>
     </BrowserRouter>

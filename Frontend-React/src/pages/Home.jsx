@@ -1,7 +1,16 @@
-import React from 'react'
+import React from 'react';
+import Navbar from '../components/NavBar';
+import Descripcion from '../components/Descripcion';
+import CarrucelProductos from '../components/CarruselProductos';
+import Footer from '../components/Footer';
 
 export default function Home() {
   return (
-    <div>Home</div>
-  )
+    <div>
+      <Navbar />
+      <Descripcion />
+      <CarrucelProductos />
+      <Footer />
+    </div>
+  );
 }
