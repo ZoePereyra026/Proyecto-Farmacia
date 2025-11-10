@@ -38,7 +38,7 @@ export default function Navbar({ busqueda, setBusqueda }) {
     <nav className={`navbar navbar-expand-lg ${esCarrito ? 'minimal' : 'navbar-light bg-light border-bottom'}`}>
       <div className="container">
         <Link className="navbar-brand d-flex align-items-center" to="/">
-          <img src="../public/img/logo.png" alt="Logo" width="30" className="me-2" />
+          <img src="/img/Logo.png" alt="Logo" width="30" className="me-2" />
           <span className="fw-bold text-success">Farmacia San Martín</span>
         </Link>
 
@@ -71,7 +71,7 @@ export default function Navbar({ busqueda, setBusqueda }) {
               <ul className="navbar-nav ms-auto">
                 <li className="nav-item d-flex align-items-center">
                   <Link className="nav-link position-relative" to="/carrito">
-                    <div style={{ position: 'relative', minWidth: '40px', height: '40px' }}>
+                    <div style={{ position: 'relative', minWidth: '40px', height: '40px'}}>
                       <i className="fas fa-shopping-cart" style={{ color: "#00AEEF", fontSize: '1.5rem' }}></i>
                       <span
                         id="contadorCarrito"
@@ -101,7 +101,7 @@ export default function Navbar({ busqueda, setBusqueda }) {
                 </li>
 
                 <li className="nav-item">
-                  <Link className="nav-link" to="/sesion">Iniciar Sesión</Link>
+                  <Link className="nav-link fw-bold text-success" to="/sesion" style={{paddingBottom: '30px'}}>Iniciar Sesión</Link>
                 </li>
               </ul>
             </div>

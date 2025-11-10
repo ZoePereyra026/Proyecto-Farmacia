@@ -46,7 +46,6 @@
   transition: background-color 0.3s ease;
 }
 
-/* Enlaces activos o destacados */
 .nav-link.active,
 .nav-link:hover {
   color: #00AEEF;
@@ -111,6 +110,7 @@ h1 {
   font-weight: bold;
   text-decoration: none;
   border-radius: 8px;
+  border: none;
 }
 
 .total {
@@ -254,10 +254,8 @@ button.remove:hover,
   display: flex;
   justify-content: flex-end;
   padding: 0 30px;
-  margin-bottom: 20px;
 }
 
-/*Diseño Responsive*/
 @media (max-width: 768px) {
   .volver-catalogo-wrapper {
     justify-content: center;
