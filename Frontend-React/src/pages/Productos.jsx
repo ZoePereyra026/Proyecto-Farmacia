@@ -4,11 +4,12 @@ import Footer from '../components/Footer';
 import Filtros from '../components/Filtros';
 import ListadoProductos from '../components/ListadoProductos';
 import useProductos from '../hooks/useProductos';
+import '../css/style_productos.css';
 
 export default function Productos() {
   const todosLosProductos = useProductos();
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState("Todos los productos");
-  const [cantidadVisible, setCantidadVisible] = useState(6);
+  const [cantidadVisible, setCantidadVisible] = useState(9);
   const [busqueda, setBusqueda] = useState("");
 
   const productosFiltrados = todosLosProductos.filter(p => {
@@ -33,49 +34,43 @@ export default function Productos() {
 
       <main className="flex-grow-1">
         <div className="container my-5">
-          <div className="row">
-            <aside className="col-md-3">
+          <div className="layout-productos d-flex" style={{ gap: '20px' }}>
+            <aside style={{ flex: '0 0 250px' }}>
               <Filtros
                 categoriaSeleccionada={categoriaSeleccionada}
                 setCategoriaSeleccionada={(cat) => {
                   setCategoriaSeleccionada(cat);
-                  setCantidadVisible(6);
+                  setCantidadVisible(9);
                 }}
               />
             </aside>
 
-            <section className="col-md-9">
-              {productosMostrados.length > 0 ? (
-                <>
-                  <ListadoProductos productos={productosMostrados} />
-                  <div className="text-center mt-4">
-                    {cantidadVisible < productosFiltrados.length && (
-                      <button
-                        className="btn btn-success me-2"
-                        onClick={() => setCantidadVisible(cantidadVisible + 6)}
-                      >
-                        Ver más
-                      </button>
-                    )}
-                    {cantidadVisible > 6 && (
-                      <button
-                        className="btn btn-secondary"
-                        onClick={() => setCantidadVisible(6)}
-                      >
-                        Ver menos
-                      </button>
-                    )}
-                  </div>
-                </>
-              ) : (
-                <div className="alert alert-warning text-center">
-                  No hay productos en la categoría seleccionada.
-                </div>
-              )}
+            <section style={{ flex: '1 1 auto' }}>
+              <ListadoProductos productos={productosMostrados} />
+
+              <div className="text-center mt-4">
+                {cantidadVisible < productosFiltrados.length && (
+                  <button
+                    className="btn btn-success me-2"
+                    onClick={() => setCantidadVisible(cantidadVisible + 9)}
+                  >
+                    Ver más
+                  </button>
+                )}
+                {cantidadVisible > 9 && (
+                  <button
+                    className="btn btn-secondary"
+                    onClick={() => setCantidadVisible(Math.max(9, cantidadVisible - 9))}
+                  >
+                    Ver menos
+                  </button>
+                )}
+              </div>
             </section>
           </div>
         </div>
       </main>
+
       <Footer />
     </div>
   );
