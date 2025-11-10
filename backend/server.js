@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors"); 
 require("dotenv").config();
 
 const {
@@ -16,6 +17,7 @@ const carritoRoutes = require("./routes/carritoRoutes");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use(cors()); 
 app.use(express.json());
 
 // Conexión a bases de datos
