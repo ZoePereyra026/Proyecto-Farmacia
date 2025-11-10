@@ -4,8 +4,6 @@ export default function CartTotals({ subtotal, total, money, clearCart, handleCh
   const confirmarVaciado = () => {
     if (window.confirm('¿Desea vaciar su carrito?')) {
       clearCart();
-      window.dispatchEvent(new Event('carritoActualizado')); 
-      window.location.reload(); 
     }
   };
 

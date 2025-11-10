@@ -2,19 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../css/style_navbar.css';
 import BotonVerCatalogo from './BotonVerCatalogo';
-import useCarritoPresente from '../hooks/useCarritoPresente';
 
 export default function Navbar({ busqueda, setBusqueda }) {
   const [cartCount, setCartCount] = useState(0);
   const [username, setUsername] = useState(null);
   const location = useLocation();
+
   const mostrarBuscador = location.pathname === '/productos';
   const esCarrito = location.pathname === '/carrito';
   const esLogin = location.pathname === '/login';
   const esRegistro = location.pathname === '/registro';
-  const hayCarrito = useCarritoPresente();
-
   const soloLogo = esLogin || esRegistro;
+  const hayCarrito = cartCount > 0;
 
   useEffect(() => {
     const actualizarContadorYUsuario = () => {
@@ -22,8 +21,7 @@ export default function Navbar({ busqueda, setBusqueda }) {
         const usuario = JSON.parse(localStorage.getItem("usuario"));
         setUsername(usuario?.username || usuario?.nombre || usuario?.email || null);
 
-        const key = usuario ? `cart_usuario_${usuario.id}` : "cart";
-        const cart = JSON.parse(localStorage.getItem(key)) || [];
+        const cart = JSON.parse(localStorage.getItem("cart")) || [];
         const totalItems = Array.isArray(cart)
           ? cart.reduce((acc, item) => acc + (item.qty || 1), 0)
           : 0;
@@ -40,13 +38,12 @@ export default function Navbar({ busqueda, setBusqueda }) {
     return () => window.removeEventListener('carritoActualizado', actualizarContadorYUsuario);
   }, []);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-  };
+  const handleSearch = (e) => e.preventDefault();
 
   const cerrarSesion = () => {
     if (window.confirm("¿Deseás cerrar sesión?")) {
       localStorage.removeItem("usuario");
+      localStorage.removeItem("cart");
       window.dispatchEvent(new Event("carritoActualizado"));
       setUsername(null);
     }
@@ -89,7 +86,9 @@ export default function Navbar({ busqueda, setBusqueda }) {
               <ul className="navbar-nav ms-auto">
                 <li className="nav-item d-flex align-items-center">
                   {username && (
-                    <span className="fw-bold text-success me-2" style={{paddingBottom: '20px'}}>{username}</span>
+                    <span className="fw-bold text-success me-2" style={{ paddingBottom: '20px' }}>
+                      {username}
+                    </span>
                   )}
 
                   <Link className="nav-link position-relative" to="/carrito">
@@ -126,7 +125,7 @@ export default function Navbar({ busqueda, setBusqueda }) {
                       Iniciar Sesión
                     </Link>
                   ) : (
-                    <button className="btn btn-success fw-bold ms-2" onClick={cerrarSesion} style={{ marginBottom: '20px'}}>
+                    <button className="btn btn-success fw-bold ms-2" onClick={cerrarSesion} style={{ marginBottom: '20px' }}>
                       Cerrar Sesión
                     </button>
                   )}

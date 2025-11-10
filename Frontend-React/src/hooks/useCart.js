@@ -21,14 +21,18 @@ export default function useCart() {
 
   const updateTotals = (c) => {
     const sub = c.reduce((acc, it) => {
-        const precio = Number(it.precio || it.price) || 0;
-        const cantidad = Number(it.qty) || 1;
-        return acc + precio * cantidad;
+      const rawPrice = it.precio ?? it.price;
+      const rawQty = it.qty;
+
+      const price = isNaN(parseFloat(rawPrice)) ? 0 : parseFloat(rawPrice);
+      const qty = isNaN(parseInt(rawQty)) ? 1 : parseInt(rawQty);
+
+      return acc + price * qty;
     }, 0);
+
     setSubtotal(sub);
     setTotal(sub);
   };
-
 
   const setQty = (id, qty) => {
     const updated = cart.map((item) =>

@@ -3,7 +3,7 @@ import useCart from '../hooks/useCart';
 import CartItem from '../components/CartItem';
 import CartEmpty from '../components/CartEmpty';
 import CartTotals from '../components/CartTotals';
-import '../css/style_carrito.css'
+import '../css/style_carrito.css';
 
 export default function VistaCarrito() {
   const {
