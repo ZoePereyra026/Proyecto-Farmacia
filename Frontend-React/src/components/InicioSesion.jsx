@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import "../../css/style_form.css";
 
 export default function InicioSesion() {
   const { login } = useAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [mensaje, setMensaje] = useState("");
@@ -13,7 +14,12 @@ export default function InicioSesion() {
     e.preventDefault();
 
     const res = await login(email, password);
-    setMensaje(res.success ? "Inicio de sesión exitoso" : `${res.error}`);
+    if (res.success) {
+      setMensaje("Inicio de sesión exitoso");
+      setTimeout(() => navigate("/"), 1000); 
+    } else {
+      setMensaje(res.error);
+    }
   };
 
   return (

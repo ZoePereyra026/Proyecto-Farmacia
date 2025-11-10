@@ -6,6 +6,7 @@ import useCarritoPresente from '../hooks/useCarritoPresente';
 
 export default function Navbar({ busqueda, setBusqueda }) {
   const [cartCount, setCartCount] = useState(0);
+  const [username, setUsername] = useState(null);
   const location = useLocation();
   const mostrarBuscador = location.pathname === '/productos';
   const esCarrito = location.pathname === '/carrito';
@@ -16,38 +17,49 @@ export default function Navbar({ busqueda, setBusqueda }) {
   const soloLogo = esLogin || esRegistro;
 
   useEffect(() => {
-    const actualizarContador = () => {
+    const actualizarContadorYUsuario = () => {
       try {
-        const cart = JSON.parse(localStorage.getItem("cart")) || [];
+        const usuario = JSON.parse(localStorage.getItem("usuario"));
+        setUsername(usuario?.username || usuario?.nombre || usuario?.email || null);
+
+        const key = usuario ? `cart_usuario_${usuario.id}` : "cart";
+        const cart = JSON.parse(localStorage.getItem(key)) || [];
         const totalItems = Array.isArray(cart)
           ? cart.reduce((acc, item) => acc + (item.qty || 1), 0)
           : 0;
         setCartCount(totalItems);
       } catch (error) {
-        console.error("Error leyendo carrito:", error);
+        console.error("Error leyendo carrito o usuario:", error);
         setCartCount(0);
+        setUsername(null);
       }
     };
 
-    actualizarContador();
-    window.addEventListener('carritoActualizado', actualizarContador);
-    return () => window.removeEventListener('carritoActualizado', actualizarContador);
+    actualizarContadorYUsuario();
+    window.addEventListener('carritoActualizado', actualizarContadorYUsuario);
+    return () => window.removeEventListener('carritoActualizado', actualizarContadorYUsuario);
   }, []);
 
   const handleSearch = (e) => {
     e.preventDefault();
   };
 
+  const cerrarSesion = () => {
+    if (window.confirm("¿Deseás cerrar sesión?")) {
+      localStorage.removeItem("usuario");
+      window.dispatchEvent(new Event("carritoActualizado"));
+      setUsername(null);
+    }
+  };
+
   return (
     <nav className={`navbar navbar-expand-lg ${esCarrito || soloLogo ? 'minimal' : 'navbar-light bg-light border-bottom'}`}>
       <div className="container">
-        {/* Logo siempre visible */}
         <Link className="navbar-brand d-flex align-items-center" to="/">
           <img src="/img/Logo.png" alt="Logo Farmacia San Martín" width="30" className="me-2" />
           <span className="fw-bold text-success">Farmacia San Martín</span>
         </Link>
 
-        {/* Solo logo en login y registro */}
         {soloLogo ? null : esCarrito ? (
           hayCarrito && (
             <div className="ms-auto navbar-catalogo">
@@ -76,6 +88,10 @@ export default function Navbar({ busqueda, setBusqueda }) {
 
               <ul className="navbar-nav ms-auto">
                 <li className="nav-item d-flex align-items-center">
+                  {username && (
+                    <span className="fw-bold text-success me-2" style={{paddingBottom: '20px'}}>{username}</span>
+                  )}
+
                   <Link className="nav-link position-relative" to="/carrito">
                     <div style={{ position: 'relative', minWidth: '40px', height: '40px' }}>
                       <i className="fas fa-shopping-cart" style={{ color: "#00AEEF", fontSize: '1.5rem' }}></i>
@@ -104,12 +120,16 @@ export default function Navbar({ busqueda, setBusqueda }) {
                       </span>
                     </div>
                   </Link>
-                </li>
 
-                <li className="nav-item">
-                  <Link className="nav-link fw-bold text-success" to="/login" style={{ paddingBottom: '30px' }}>
-                    Iniciar Sesión
-                  </Link>
+                  {!username ? (
+                    <Link className="nav-link fw-bold text-success" to="/login" style={{ paddingBottom: '30px' }}>
+                      Iniciar Sesión
+                    </Link>
+                  ) : (
+                    <button className="btn btn-success fw-bold ms-2" onClick={cerrarSesion} style={{ marginBottom: '20px'}}>
+                      Cerrar Sesión
+                    </button>
+                  )}
                 </li>
               </ul>
             </div>

@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 import "../../css/style_form.css";
 
 export default function DetalleRegistro() {
   const { register } = useAuth();
+  const navigate = useNavigate();
   const [nombre, setNombre] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +22,12 @@ export default function DetalleRegistro() {
 
     const id = Date.now();
     const res = await register(id, nombre, email, password);
-    setMensaje(res.success ? "Usuario registrado con éxito" : `${res.error}`);
+    if (res.success) {
+      setMensaje("Usuario registrado con éxito");
+      setTimeout(() => navigate("/login"), 1000);
+    } else {
+      setMensaje(res.error);
+    }
   };
 
   return (
