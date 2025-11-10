@@ -1,0 +1,50 @@
+.form-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+form{
+    background-color: white;
+    padding: 40px;
+    border-radius: 20px;
+}
+
+.form-section {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 20px;;
+}
+
+.form-section form {
+  max-width: 400px;
+  width: 100%;
+}
+
+.form-logo {
+  margin-bottom: 1.5rem;
+}
+
+.form-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.form-floating {
+  margin-bottom: 1rem;
+}
+
+.btn-primary {
+  font-size: 1rem;
+  padding: 0.75rem;
+}
+
+.form-footer-text {
+  margin-top: 1.5rem;
+  font-size: 0.9rem;
+  color: #6c757d;
+}

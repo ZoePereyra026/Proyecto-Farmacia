@@ -9,6 +9,7 @@ export default function Navbar({ busqueda, setBusqueda }) {
   const location = useLocation();
   const mostrarBuscador = location.pathname === '/productos';
   const esCarrito = location.pathname === '/carrito';
+  const esLogin = location.pathname === '/login';
   const hayCarrito = useCarritoPresente();
 
   useEffect(() => {
@@ -35,14 +36,14 @@ export default function Navbar({ busqueda, setBusqueda }) {
   };
 
   return (
-    <nav className={`navbar navbar-expand-lg ${esCarrito ? 'minimal' : 'navbar-light bg-light border-bottom'}`}>
+    <nav className={`navbar navbar-expand-lg ${esCarrito || esLogin ? 'minimal' : 'navbar-light bg-light border-bottom'}`}>
       <div className="container">
         <Link className="navbar-brand d-flex align-items-center" to="/">
           <img src="/img/Logo.png" alt="Logo" width="30" className="me-2" />
           <span className="fw-bold text-success">Farmacia San Martín</span>
         </Link>
 
-        {esCarrito ? (
+        {esLogin ? null : esCarrito ? (
           hayCarrito && (
             <div className="ms-auto navbar-catalogo">
               <BotonVerCatalogo />
@@ -101,7 +102,9 @@ export default function Navbar({ busqueda, setBusqueda }) {
                 </li>
 
                 <li className="nav-item">
-                  <Link className="nav-link fw-bold text-success" to="/sesion" style={{paddingBottom: '30px'}}>Iniciar Sesión</Link>
+                  <Link className="nav-link fw-bold text-success" to="/login" style={{paddingBottom: '30px'}}>
+                    Iniciar Sesión
+                  </Link>
                 </li>
               </ul>
             </div>
