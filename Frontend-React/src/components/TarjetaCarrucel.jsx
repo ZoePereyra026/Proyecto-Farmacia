@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../../css/style_tarjetacarrucel.css';
 
 export default function TarjetaCarrucel({ producto }) {
   return (

@@ -206,12 +206,16 @@ html, body {
 @media (max-width: 768px) {
   .grid-superior {
     grid-template-columns: 1fr;
-    gap: 20px; 
     text-align: center;
+    gap: 0px;
   }
 
-  .detalle-container{
-    width: 400px;
+  .detalle-container {
+    width: 100%;
+    max-width: 350px;
+    padding: 20px;
+    box-sizing: border-box;
+    margin: 0 auto;
   }
 
   .galeria {
@@ -222,39 +226,40 @@ html, body {
 
   .imagen-principal {
     width: 100%;
-    max-width: 280px;
+    max-width: 260px;
     margin: 0 auto;
   }
 
   .miniaturas {
     flex-wrap: wrap;
-    gap: 15px;
+    justify-content: center;
+    gap: 0px;
     margin-top: 15px;
   }
 
   .miniaturas img {
-    width: 60px;
-    height: 60px;
+    width: 70px;
+    height: 70px;
   }
 
   .info-producto {
     align-items: center;
     text-align: center;
-    padding: 0 10px;
+    padding: 0 12px;
   }
 
   .info-producto h1 {
-    font-size: 20px;
+    font-size: clamp(18px, 5vw, 20px);
     margin-bottom: 8px;
   }
 
   .precio {
-    font-size: 20px;
+    font-size: clamp(17px, 4.5vw, 20px);
     margin-bottom: 8px;
   }
 
   .descripcion {
-    font-size: 14px;
+    font-size: clamp(13px, 4vw, 14px);
     margin-bottom: 12px;
   }
 
@@ -265,19 +270,108 @@ html, body {
     margin: 15px 0;
   }
 
+  .etiqueta-cantidad {
+    font-size: clamp(14px, 4vw, 16px);
+  }
+
+  .btn-cantidad {
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+  }
+
+  .valor-cantidad {
+    font-size: 15px;
+  }
+
   .botones-grid {
+    display: flex;
     flex-direction: column;
-    gap: 15px; 
+    gap: 0px;
     padding: 0 20px;
+    align-items: center;
+    width: 320px;
   }
 
   .agregar-carrito,
   .btn-volver {
     width: 100%;
-    max-width: 300px;
+    max-width: 320px;
+    font-size: clamp(14px, 4vw, 16px);
+    padding: 10px 20px;
   }
 
   .agregar-carrito {
     margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 450px) {
+  .detalle-container {
+    max-width: 60%;
+    padding: 16px;
+    margin: 0 auto;
+    box-sizing: border-box;
+  }
+
+  .imagen-principal {
+    max-width: 200px;
+  }
+
+  .grid-superior{
+    gap: 0px;
+  }
+
+  .miniaturas {
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .miniaturas img {
+    width: 50px;
+    height: 50px;
+  }
+
+  .info-producto {
+    padding: 0 10px;
+  }
+
+  .info-producto h1 {
+    font-size: clamp(16px, 5vw, 18px);
+  }
+
+  .precio {
+    font-size: clamp(16px, 4.5vw, 18px);
+  }
+
+  .descripcion {
+    font-size: clamp(12px, 4vw, 13px);
+  }
+
+  .etiqueta-cantidad {
+    font-size: clamp(13px, 4vw, 15px);
+  }
+
+  .btn-cantidad {
+    width: 28px;
+    height: 28px;
+    font-size: 16px;
+  }
+
+  .valor-cantidad {
+    font-size: 14px;
+  }
+
+  .botones-grid {
+    width: 100%;
+    padding: 0 20px;
+    gap: 0px;
+    align-items: center;
+  }
+
+  .agregar-carrito,
+  .btn-volver {
+    max-width: 200px;
+    font-size: clamp(13px, 4vw, 15px);
   }
 }

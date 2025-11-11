@@ -1,4 +1,5 @@
 import { useNavigate } from 'react-router-dom';
+import '../../css/style_card.css';
 
 export default function ProductoCard({ producto }) {
   const navigate = useNavigate();

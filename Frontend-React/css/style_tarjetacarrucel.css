@@ -10,9 +10,21 @@
   align-items: center;
   justify-content: center;
   transition: transform 0.3s ease;
-  margin: 0 auto;
   box-sizing: border-box;
   text-align: center; 
+}
+
+.card-body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.card-title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .tarjeta-carrucel:hover {
@@ -21,11 +33,11 @@
 
 .tarjeta-carrucel img {
   width: 100%;
-  max-width: 220px;
+  max-width: 180px;
   height: 180px;
   object-fit: contain;
   border-radius: 8px;
-  margin-bottom: 0.5rem;
+  margin: 0.5rem;
 }
 
 .tarjeta-carrucel h5 {
@@ -53,6 +65,28 @@
 
   .tarjeta-carrucel img {
     height: 160px;
+  }
+
+  .tarjeta-carrucel h5,
+  .tarjeta-carrucel p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .tarjeta-carrucel {
+    width: 210px;
+    height: 300px;
+  }
+
+  .tarjeta-carrucel img {
+    height: 180px;
+    width: 180px;
+  }
+
+  .card-body{
+    height: 170px;
+    margin: 10px 0 20px;
   }
 
   .tarjeta-carrucel h5,
