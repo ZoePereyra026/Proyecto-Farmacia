@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import useProductos from '../hooks/useProductos';
 import TarjetaCarrucel from './TarjetaCarrucel';
-import '/css/style_carrucel.css';
+import '../../css/style_carrucel.css';
+import '../../css/style_tarjetacarrucel.css';
 
 export default function CarrucelProductos() {
   const productos = useProductos() || [];
