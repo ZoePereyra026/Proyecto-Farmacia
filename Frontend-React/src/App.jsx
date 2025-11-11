@@ -5,6 +5,7 @@ import Detalle from './pages/Detalle'
 import Carrito from './pages/Carrito'
 import Login from './pages/Login'
 import Registro from './pages/Registro'
+import NotFound from './pages/NotFound'
 import '../css/style_index.css';
 
 export default function App() {
@@ -17,6 +18,7 @@ export default function App() {
           <Route path="/carrito" element={<Carrito />} />
           <Route path="/login" element={<Login />} />
           <Route path="/registro" element={<Registro />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
     </BrowserRouter>
   )
