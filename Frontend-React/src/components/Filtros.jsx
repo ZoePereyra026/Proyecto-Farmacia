@@ -1,3 +1,5 @@
+import '../../css/style_filtros.css'
+
 export default function Filtros({
   categoriaSeleccionada,
   setCategoriaSeleccionada,

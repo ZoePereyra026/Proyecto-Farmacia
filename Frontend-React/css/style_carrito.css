@@ -4,9 +4,21 @@
   --verde-suave: #61c286;
 }
 
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--verde-suave);
+}
+
 .navbar {
   background-color: #ffffff;
   padding: 10px 20px;
+}
+
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .navbar-brand {
@@ -24,20 +36,14 @@
   margin-right: 10px;
 }
 
-.navbar .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.nav-link.active,
+.nav-link:hover {
+  color: var(--celeste);
 }
 
 #botonCatalogoHeader {
   display: flex;
   align-items: center;
-}
-
-.nav-link.active,
-.nav-link:hover {
-  color: var(--celeste);
 }
 
 #btn_medio {
@@ -49,12 +55,6 @@
   border-radius: 8px;
   font-weight: bold;
   transition: background-color 0.3s ease;
-}
-
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: var(--verde-suave);
 }
 
 .carrito-container {
@@ -145,7 +145,8 @@ h1 {
   color: black;
 }
 
-#btnClearCart {
+#btnClearCart,
+.boton-pago {
   background-color: var(--celeste);
   color: white;
   border: none;
@@ -156,23 +157,9 @@ h1 {
   transition: background-color 0.3s ease;
 }
 
-#btnClearCart:hover {
-  background-color: #4fc7ec;
-}
-
-.boton-pago {
-  background-color: var(--verde-suave);
-  color: white;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 8px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
+#btnClearCart:hover,
 .boton-pago:hover {
-  background-color: var(--celeste);
+  background-color: #4fc7ec;
 }
 
 .remove {
@@ -256,7 +243,6 @@ h1 {
 .btn-volver {
   display: flex;
   justify-content: right;
-  padding: 10px 20px;
   background-color: var(--celeste);
   color: white;
   text-decoration: none;
@@ -264,6 +250,7 @@ h1 {
   font-weight: bold;
   font-size: 15px;
   transition: background-color 0.3s ease;
+  margin: 0px;
 }
 
 .btn-volver:hover {
@@ -319,11 +306,6 @@ footer p {
     text-align: center;
   }
 
-  .carrito-wrapper {
-    display: flex;
-    justify-content: center;
-  }
-
   .carrito-container {
     flex-direction: column;
     align-items: center;
@@ -347,10 +329,6 @@ footer p {
   .total {
     text-align: center;
     margin: 30px 20px;
-  }
-
-  .boton-pago {
-    padding: 15px 20px;
   }
 
   .navbar-brand {
@@ -384,7 +362,7 @@ footer p {
     font-size: 18px;
   }
 
-  .valor-cantidad {
+    .valor-cantidad {
     font-size: 16px;
   }
 
@@ -441,5 +419,9 @@ footer p {
   footer {
     font-size: 13px;
     padding: 1rem 0;
+  }
+
+  .btn-volver {
+    padding-top: 0px;
   }
 }
