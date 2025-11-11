@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import '../css/style_navbar.css';
+import '../../css/style_navbar.css';
 import BotonVerCatalogo from './BotonVerCatalogo';
 
 export default function Navbar({ busqueda, setBusqueda }) {
@@ -92,22 +92,22 @@ export default function Navbar({ busqueda, setBusqueda }) {
                   )}
 
                   <Link className="nav-link position-relative" to="/carrito">
-                    <div style={{ position: 'relative', minWidth: '40px', height: '40px' }}>
+                    <div style={{ position: 'relative', minWidth: '40px', height: '40px', marginRight:'10px'}}>
                       <i className="fas fa-shopping-cart" style={{ color: "#00AEEF", fontSize: '1.5rem' }}></i>
                       <span
                         id="contadorCarrito"
                         className="position-absolute"
                         style={{
-                          top: '-10px',
-                          right: '-10px',
+                          top: '-22px',
+                          right: '-18px',
                           backgroundColor: '#00AEEF',
                           color: 'white',
                           fontWeight: 'bold',
                           padding: '6px',
                           fontSize: '1rem',
                           borderRadius: '50%',
-                          minWidth: '28px',
-                          height: '28px',
+                          minWidth: '30px',
+                          height: '30px',
                           lineHeight: '16px',
                           boxShadow: '0 2px 6px rgba(0, 0, 0, 0.1)',
                           textAlign: 'center',

@@ -5,6 +5,11 @@
   border-bottom: 1px solid #dcdcdc;
   display: flex;
   align-items: center;
+  justify-content: center;
+}
+
+.nav-item{
+  margin-top: 20px;
 }
 
 .navbar .container {
@@ -17,12 +22,14 @@
   padding-left: 1rem;
   padding-right: 1rem;
   box-sizing: border-box;
+  justify-content: center;
 }
 
 .navbar-brand {
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  justify-content: center;
 }
 
 .buscador-wrapper {
@@ -40,7 +47,7 @@
 
 .buscador-wrapper .buscador {
   flex: 1;
-  padding: 10px;
+  margin-top: 30px;
   font-size: 1rem;
   border: 2px solid #b2d8c7;
   border-radius: 5px;
@@ -50,6 +57,7 @@
   padding: 10px 20px;
   font-weight: bold;
   border-radius: 5px;
+  margin-top: 20px;
 }
 
 .navbar-nav {
@@ -82,25 +90,6 @@
   font-size: 1.5rem;
 }
 
-.carrito-contador {
-  position: absolute;
-  top: -10px;
-  right: -10px;
-  background-color: #00AEEF;
-  color: white;
-  font-weight: bold;
-  padding: 6px;
-  font-size: 1rem;
-  border-radius: 50%;
-  min-width: 28px;
-  height: 28px;
-  line-height: 16px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  white-space: nowrap;
-  display: inline-block;
-}
-
 .navbar-catalogo {
   display: flex;
   align-items: center;
@@ -124,6 +113,30 @@
   .navbar {
     height: auto;
     padding: 1rem;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .navbar .container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+    padding: 0 2rem;
+  }
+
+  .navbar-brand {
+    justify-content: center;
+    font-size: 1rem;
+    gap: 0.5rem;
+    margin: 0 auto;
+  }
+
+  .navbar-toggler {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
   }
 
   .navbar-catalogo {
@@ -133,29 +146,37 @@
     flex-wrap: wrap;
   }
 
-  .navbar .container {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 1rem;
-  }
-
   .buscador-wrapper {
     width: 100%;
-    max-width: none;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 0px;
+  }
+
+  .buscador-wrapper .buscador {
+    width: 100%;
+    font-size: 0.95rem;
+    margin-top: 0px;
+  }
+
+  .buscador-wrapper .btn-success {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 10px;
+    margin-top: 0px;
   }
 
   .navbar-nav {
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 1rem;
+    width: 100%;
   }
 
   .nav-item {
+    align-items: center;
+    gap: 1rem;
     width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
   }
 
   .nombre-usuario {
@@ -166,18 +187,82 @@
 
   .carrito-wrapper {
     justify-content: center;
-    margin-bottom: 0.5rem;
+    width: 100%;
+    display: flex;
+    align-items: center;
   }
 
-  .carrito-contador {
-    font-size: 0.85rem;
-    min-width: 24px;
-    height: 24px;
+  .carrito-icono {
+    font-size: 1.5rem;
+    color: #00AEEF;
+    margin-right: 0.5rem;
   }
 
   .btn-success {
-    width: auto;
-    padding: 8px 16px;
+    width: 100%;
+    max-width: 280px;
+    font-size: 0.95rem;
+    padding: 10px;
+    text-align: center;
   }
 }
 
+@media (max-width: 450px) {
+  .navbar .container {
+    padding: 0 0.5rem;
+    gap: 1rem;
+  }
+
+  .navbar-brand {
+    font-size: 0.85rem;
+    justify-content: center;
+    gap: 0.5rem;
+    margin: 0 auto;
+  }
+
+  .navbar-toggler {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 10;
+  }
+
+  .buscador-wrapper .buscador {
+    font-size: 0.85rem;
+    padding: 8px;
+  }
+
+  .buscador-wrapper .btn-success {
+    font-size: 0.85rem;
+    padding: 8px 12px;
+  }
+
+  .nombre-usuario {
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+
+  .carrito-wrapper {
+    justify-content: center;
+    margin-bottom: 0.5rem;
+    width: 100%;
+  }
+
+  .btn-success {
+    font-size: 0.85rem;
+    padding: 8px 12px;
+    width: 100%;
+    max-width: 260px;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+
+  .navbar-nav {
+    gap: 0.75rem;
+  }
+
+  .navbar-catalogo {
+    margin-top: 0.5rem;
+  }
+}
