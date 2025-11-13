@@ -40,6 +40,9 @@ export default function Navbar({ busqueda, setBusqueda }) {
   const cerrarSesion = () => {
     if (window.confirm("¿Deseás cerrar sesión?")) {
       logout();
+      
+      localStorage.removeItem('cart');
+      window.dispatchEvent(new Event('carritoActualizado'));
     }
   };
 

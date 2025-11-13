@@ -2,14 +2,13 @@ import React from 'react';
 import { useAuth } from '../hooks/useAuth';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { useNavigate } from 'react-router-dom';
 
 export default function Comprobante() {
   const { usuario } = useAuth();
+  const navigate = useNavigate(); 
 
-  // Recuperar carrito desde localStorage
   const carrito = JSON.parse(localStorage.getItem('cart')) || [];
-
-  // Calcular total dinámicamente
   const total = carrito.reduce((acc, item) => acc + item.precio * item.qty, 0);
 
   const fecha = new Date().toLocaleDateString();
@@ -28,6 +27,11 @@ export default function Comprobante() {
 
       pdf.addImage(imgData, 'PNG', 10, 10, imgWidth, imgHeight);
       pdf.save('comprobante.pdf');
+
+      localStorage.removeItem('cart');
+      window.dispatchEvent(new Event('carritoActualizado'));
+
+      setTimeout(() => navigate('/carrito'), 1000);
     });
   };
 
@@ -45,7 +49,7 @@ export default function Comprobante() {
         color: '#333'
       }}
     >
-      <h2 style={{ textAlign: 'center', marginBottom: '1rem' }}>🧾 Comprobante de Compra</h2>
+      <h2 style={{ textAlign: 'center', marginBottom: '1rem' }}>Comprobante de Compra</h2>
 
       <div style={{ marginBottom: '1rem' }}>
         <p><strong>ID de usuario:</strong> {usuario?.id}</p>
@@ -57,7 +61,7 @@ export default function Comprobante() {
 
       <hr style={{ margin: '1rem 0' }} />
 
-      <h4 style={{ marginBottom: '0.5rem' }}>🛒 Productos comprados:</h4>
+      <h4 style={{ marginBottom: '0.5rem' }}>Productos comprados:</h4>
       <ul style={{ paddingLeft: '1.2rem', marginBottom: '1rem' }}>
         {carrito.map((item, i) => (
           <li key={i}>
