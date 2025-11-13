@@ -68,6 +68,7 @@ https://github.com/martinSadir21/Proyecto-Integrador-Farmacia.git
 
 - Interacción fluida, organización clara de elementos y accesibilidad visual.
 
+```js
 ## Estructura del proyecto
 
 /Proyecto-Integrador-Farmacia/
@@ -116,6 +117,7 @@ https://github.com/martinSadir21/Proyecto-Integrador-Farmacia.git
 └── /img/                     # Imágenes generales y de productos
     └── logo.png              # (y otros recursos visuales)
 
+```
 ---
 
 ## Arquitectura React 
@@ -159,6 +161,8 @@ window.dispatchEvent(new Event("carritoActualizado"));
 │
 └── api/
     └── auth.js
+
+```
 
 ## Buenas prácticas aplicadas
 
