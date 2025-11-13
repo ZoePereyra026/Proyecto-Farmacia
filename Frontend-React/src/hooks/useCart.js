@@ -35,12 +35,17 @@ export default function useCart() {
   };
 
   const setQty = (id, qty) => {
-    const updated = cart.map((item) =>
-      String(item.id) === String(id)
-        ? { ...item, qty: Math.max(1, parseInt(qty, 10) || 1) }
-        : item
-    );
-    saveCart(updated);
+    const nuevaCantidad = parseInt(qty, 10) || 0;
+
+    const actualizado = cart
+      .map((item) =>
+        String(item.id) === String(id)
+          ? { ...item, qty: nuevaCantidad }
+          : item
+      )
+      .filter((item) => item.qty > 0);
+
+    saveCart(actualizado);
   };
 
   const removeFromCart = (id) => {

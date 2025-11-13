@@ -10,26 +10,30 @@ export const AuthProvider = ({ children }) => {
     const usuarioGuardado = localStorage.getItem("usuario");
     if (usuarioGuardado) {
       setUsuario(JSON.parse(usuarioGuardado));
-      window.dispatchEvent(new Event("carritoActualizado")); // actualiza nombre y carrito
+      window.dispatchEvent(new Event("carritoActualizado"));
     }
   }, []);
 
   const register = async (id, username, email, password) => {
-    const res = await registerUser(id, username, email, password);
-    if (res.success) {
+    const res = await registerUser(id, username, email.trim().toLowerCase(), password);
+    if (res.success && res.data?.usuario) {
       setUsuario(res.data.usuario);
       localStorage.setItem("usuario", JSON.stringify(res.data.usuario));
       window.dispatchEvent(new Event("carritoActualizado"));
+    } else {
+      console.error("Error en registro:", res.error);
     }
     return res;
   };
 
   const login = async (email, password) => {
-    const res = await loginUser(email, password);
-    if (res.success) {
+    const res = await loginUser(email.trim().toLowerCase(), password);
+    if (res.success && res.data?.usuario) {
       setUsuario(res.data.usuario);
       localStorage.setItem("usuario", JSON.stringify(res.data.usuario));
       window.dispatchEvent(new Event("carritoActualizado"));
+    } else {
+      console.error("Error en login:", res.error);
     }
     return res;
   };
