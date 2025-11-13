@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import useCategorias from '../hooks/useCategorias'; 
+import useCategorias from '../../hooks/useCategorias'; 
 import '../../css/style_filtros.css';
 
 export default function Filtros({
