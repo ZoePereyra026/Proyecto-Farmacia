@@ -1,4 +1,6 @@
-import '../../css/style_filtros.css'
+import { useState } from 'react';
+import useCategorias from '../hooks/useCategorias'; 
+import '../../css/style_filtros.css';
 
 export default function Filtros({
   categoriaSeleccionada,
@@ -8,15 +10,8 @@ export default function Filtros({
   precioMaximo,
   setPrecioMaximo
 }) {
-  const categorias = [
-    "Todos los productos",
-    "Medicamentos",
-    "Suplementos",
-    "Cuidado Personal",
-    "Respiratorio",
-    "Higiene",
-    "Pediatría"
-  ];
+  const categoriasBackend = useCategorias();
+  const categorias = ["Todos los productos", ...categoriasBackend];
 
   return (
     <div className="filtros mb-4">
@@ -49,9 +44,9 @@ export default function Filtros({
           id="precioMinimo"
           value={precioMinimo}
           onChange={(e) => setPrecioMinimo(e.target.value)}
-          min="0"          
+          min="0"
           max="600"
-          step="1"         
+          step="1"
         />
       </div>
       <div>
