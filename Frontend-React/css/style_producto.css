@@ -308,70 +308,92 @@ html, body {
 
 @media (max-width: 450px) {
   .detalle-container {
-    max-width: 60%;
-    padding: 16px;
+    width: 100%;
+    max-width: 360px;
+    padding: 12px;
     margin: 0 auto;
     box-sizing: border-box;
   }
 
   .imagen-principal {
-    max-width: 200px;
+    width: 100%;
+    max-width: 180px;
+    margin: 0 auto;
   }
 
-  .grid-superior{
-    gap: 0px;
+  .grid-superior {
+    gap: 8px;
+    grid-template-columns: 1fr;
+    text-align: center;
   }
 
   .miniaturas {
-    gap: 10px;
-    margin-top: 12px;
+    gap: 8px;
+    margin-top: 10px;
+    flex-wrap: wrap;
+    justify-content: center;
   }
 
   .miniaturas img {
-    width: 50px;
-    height: 50px;
+    width: 48px;
+    height: 48px;
   }
 
   .info-producto {
-    padding: 0 10px;
+    padding: 0 8px;
+    align-items: center;
+    text-align: center;
   }
 
   .info-producto h1 {
-    font-size: clamp(16px, 5vw, 18px);
+    font-size: clamp(15px, 4.5vw, 17px);
+    margin-bottom: 6px;
   }
 
   .precio {
-    font-size: clamp(16px, 4.5vw, 18px);
+    font-size: clamp(15px, 4vw, 17px);
+    margin-bottom: 6px;
   }
 
   .descripcion {
-    font-size: clamp(12px, 4vw, 13px);
+    font-size: clamp(11px, 3.5vw, 13px);
+    margin-bottom: 10px;
+  }
+
+  .fila-cantidad {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin: 12px 0;
   }
 
   .etiqueta-cantidad {
-    font-size: clamp(13px, 4vw, 15px);
+    font-size: clamp(12px, 3.5vw, 14px);
   }
 
   .btn-cantidad {
-    width: 28px;
-    height: 28px;
-    font-size: 16px;
+    width: 26px;
+    height: 26px;
+    font-size: 15px;
   }
 
   .valor-cantidad {
-    font-size: 14px;
+    font-size: 13px;
   }
 
   .botones-grid {
     width: 100%;
-    padding: 0 20px;
-    gap: 0px;
+    padding: 0 16px;
+    gap: 8px;
+    flex-direction: column;
     align-items: center;
   }
 
   .agregar-carrito,
   .btn-volver {
-    max-width: 200px;
-    font-size: clamp(13px, 4vw, 15px);
+    width: 100%;
+    max-width: 240px;
+    font-size: clamp(12px, 3.5vw, 14px);
+    padding: 8px 16px;
   }
 }
