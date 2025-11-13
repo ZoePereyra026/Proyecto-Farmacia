@@ -145,7 +145,7 @@ window.dispatchEvent(new Event("carritoActualizado"));
 │   ├── Navbar.jsx
 │   ├── BotonVerCatalogo.jsx
 │   ├── CartItem.jsx
-│   └── entre otros components
+│   └── entre otros componentes
 │
 ├── context/
 │   └── AuthContext.js

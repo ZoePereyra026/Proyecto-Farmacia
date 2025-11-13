@@ -58,7 +58,7 @@ export default function Productos() {
             <section style={{ flex: '1 1 auto' }}>
               {productosFiltrados.length === 0 ? (
                 <div className="alert alert-warning text-center mt-4">
-                  🛒 No existe ningún producto que coincida con tu búsqueda o filtros.
+                  No existe ningún producto que coincida con tu búsqueda o filtros.
                 </div>
               ) : (
                 <>
