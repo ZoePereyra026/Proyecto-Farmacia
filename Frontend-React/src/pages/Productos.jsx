@@ -56,26 +56,34 @@ export default function Productos() {
             </aside>
 
             <section style={{ flex: '1 1 auto' }}>
-              <ListadoProductos productos={productosMostrados} />
+              {productosFiltrados.length === 0 ? (
+                <div className="alert alert-warning text-center mt-4">
+                  🛒 No existe ningún producto que coincida con tu búsqueda o filtros.
+                </div>
+              ) : (
+                <>
+                  <ListadoProductos productos={productosMostrados} />
 
-              <div className="text-center mt-4">
-                {cantidadVisible < productosFiltrados.length && (
-                  <button
-                    className="btn btn-success me-2"
-                    onClick={() => setCantidadVisible(cantidadVisible + 9)}
-                  >
-                    Ver más
-                  </button>
-                )}
-                {cantidadVisible > 9 && (
-                  <button
-                    className="btn btn-secondary"
-                    onClick={() => setCantidadVisible(Math.max(9, cantidadVisible - 9))}
-                  >
-                    Ver menos
-                  </button>
-                )}
-              </div>
+                  <div className="text-center mt-4">
+                    {cantidadVisible < productosFiltrados.length && (
+                      <button
+                        className="btn btn-success me-2"
+                        onClick={() => setCantidadVisible(cantidadVisible + 9)}
+                      >
+                        Ver más
+                      </button>
+                    )}
+                    {cantidadVisible > 9 && (
+                      <button
+                        className="btn btn-secondary"
+                        onClick={() => setCantidadVisible(Math.max(9, cantidadVisible - 9))}
+                      >
+                        Ver menos
+                      </button>
+                    )}
+                  </div>
+                </>
+              )}
             </section>
           </div>
         </div>
