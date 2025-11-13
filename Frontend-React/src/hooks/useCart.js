@@ -17,6 +17,10 @@ export default function useCart() {
     localStorage.setItem('cart', JSON.stringify(c));
     setCart(c);
     updateTotals(c);
+
+    if (c.length === 0) {
+      window.location.reload();
+    }
   };
 
   const updateTotals = (c) => {
