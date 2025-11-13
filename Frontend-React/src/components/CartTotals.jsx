@@ -1,11 +1,17 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function CartTotals({ subtotal, total, money, clearCart, handleCheckout }) {
+  const navigate = useNavigate()
   const confirmarVaciado = () => {
     if (window.confirm('¿Desea vaciar su carrito?')) {
       clearCart();
       window.dispatchEvent(new Event('carritoActualizado'));
     }
+  };
+
+  const emitirComprobante = () => {
+    navigate('/confirmacion'); 
   };
 
   return (
@@ -22,8 +28,8 @@ export default function CartTotals({ subtotal, total, money, clearCart, handleCh
           </button>
         </div>
         <div className="boton-wrapper">
-          <button className="boton-pago" onClick={handleCheckout}>
-            Proceder al Pago
+          <button className="boton-pago" onClick={emitirComprobante}>
+            Emitir comprobante
           </button>
         </div>
       </div>
