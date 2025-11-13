@@ -151,7 +151,8 @@ window.dispatchEvent(new Event("carritoActualizado"));
 ├── hooks/
 │   ├── useCart.js
 │   ├── useAuth.js
-│   └── useCarritoPresente.js
+│   ├── useCarritoPresente.js
+│   └── useProductos.js
 │
 ├── css/
 │   └── style_navbar.css
