@@ -38,10 +38,13 @@ La **página de inicio** resume la esencia del comercio, incluye información de
 - Bootstrap 5.3 (utilizado en la página principal)
 - Markdown para documentación (`README.md`)
 - Diseño responsive
+- MongoDB
+- JS
+- React
 
 ---
 
-## Instrucciones para visualizar el prototipo
+## Instrucciones para visualizar el prototipo estatico
 
 No requiere conexión a internet ni instalación de servidores. Solo:
 
@@ -80,8 +83,6 @@ https://github.com/martinSadir21/Proyecto-Integrador-Farmacia.git
 │   ├── producto.json
 │   └── user.json
 │
-├── middleware/
-│
 ├── models/
 │   ├── productoModels.js
 │   └── userModels.js
@@ -114,6 +115,110 @@ https://github.com/martinSadir21/Proyecto-Integrador-Farmacia.git
 │
 └── /img/                     # Imágenes generales y de productos
     └── logo.png              # (y otros recursos visuales)
+
+---
+
+## Arquitectura React 
+
+El frontend moderno fue desarrollado con **React**, utilizando componentes reutilizables, hooks personalizados y contexto para manejar el estado de forma global y reactiva.
+
+### Hooks personalizados
+
+- **`useCart`**: gestiona el carrito de compras. Permite agregar, eliminar, modificar cantidades y calcular totales. Sincroniza con `localStorage` y dispara el evento `carritoActualizado` para mantener la interfaz actualizada.
+- **`useCarritoPresente`**: detecta si hay productos en el carrito. Se usa para mostrar u ocultar botones como “Ver catálogo”.
+- **`useAuth` + `AuthContext`**: contexto global para autenticación. Permite registrar, iniciar y cerrar sesión, y compartir el estado del usuario entre componentes como `Navbar`, `Login`, `Registro`, etc.
+
+### Sincronización entre componentes
+
+El evento personalizado `carritoActualizado` permite que componentes como el `Navbar` reaccionen automáticamente a cambios en el carrito o en el usuario sin necesidad de recargar la página:
+
+```js
+window.dispatchEvent(new Event("carritoActualizado"));
+
+### Organización del código React
+
+/src/
+│
+├── components/
+│   ├── Navbar.jsx
+│   ├── BotonVerCatalogo.jsx
+│   ├── CartItem.jsx
+│   └── entre otros components
+│
+├── context/
+│   └── AuthContext.js
+│
+├── hooks/
+│   ├── useCart.js
+│   ├── useAuth.js
+│   └── useCarritoPresente.js
+│
+├── css/
+│   └── style_navbar.css
+│
+└── api/
+    └── auth.js
+
+## Buenas prácticas aplicadas
+
+- Separación clara entre lógica (hooks) y presentación (componentes).
+- Uso de `localStorage` para persistencia sin necesidad de backend obligatorio.
+- Eventos personalizados (`carritoActualizado`) para sincronización entre vistas sin recargar la página.
+- Hooks reutilizables (`useCart`, `useAuth`, `useCarritoPresente`) para encapsular lógica compartida.
+- Contexto global (`AuthContext`) para manejar autenticación de forma centralizada y reactiva.
+- Diseño responsive y accesible, adaptado a distintos dispositivos y tamaños de pantalla.
+- Catálogo dinámico con filtros por categoría, precio, disponibilidad y búsqueda en tiempo real.
+- Modularidad en la estructura de carpetas y componentes, facilitando el mantenimiento y la escalabilidad.
+- Validación de datos de entrada (como `email.trim().toLowerCase()`) para evitar errores comunes en email.
+- Separación de responsabilidades entre API (`auth.js`), lógica (`hooks/`) y presentación (`components/`).
+- Notificaciones visuales (toasts) para acciones como login, logout, agregar al carrito o errores.
+
+---
+
+## Posibilidades de expansión
+
+Este proyecto está preparado para escalar hacia funcionalidades más avanzadas:
+
+- Pasarela de pago con integración a servicios como MercadoPago o Stripe.
+- Gestión de pedidos y seguimiento de compras por parte del usuario.
+- Soporte para múltiples roles (cliente, administrador, farmacéutico).
+- Internacionalización para adaptar la app a distintos idiomas.
+
+---
+
+## Despliegue del proyecto
+
+El proyecto fue desplegado en la nube utilizando la plataforma **Render**, permitiendo que tanto el frontend como el backend estén disponibles públicamente para pruebas y demostración.
+
+### Backend
+
+El backend está desarrollado en Node.js y expone una API REST para gestionar usuarios y productos. Está disponible en:
+
+** [https://proyecto-farmacia-backend-jsio.onrender.com]
+   - (https://proyecto-farmacia-backend-jsio.onrender.com)**
+
+Este servidor maneja:
+- Registro e inicio de sesión de usuarios.
+- Consulta y gestión de productos.
+- Persistencia de datos simulada con archivos JSON.
+
+### Frontend
+
+El frontend está construido con React y refleja la identidad visual de la farmacia. Está desplegado en:
+
+** [https://proyecto-farmacia-skbo.onrender.com]
+   - (https://proyecto-farmacia-skbo.onrender.com)**
+
+Este sitio incluye:
+- Página de inicio con presentación institucional.
+- Catálogo de productos con buscador y filtros.
+- Detalle de producto con selector de cantidad.
+- Carrito de compras con cálculo de totales y visualizacion de cada producto.
+- Vistas de login y registro conectadas al backend.
+
+> Ambos entornos están sincronizados y permiten una experiencia completa de navegación, autenticación y simulación de compra.
+
+---
 
 ## Comentario final
 
