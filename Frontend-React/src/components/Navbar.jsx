@@ -2,50 +2,44 @@ import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import '../../css/style_navbar.css';
 import BotonVerCatalogo from './BotonVerCatalogo';
+import useCarritoPresente from '../hooks/useCarritoPresente';
+import { useAuth } from '../hooks/useAuth';
 
 export default function Navbar({ busqueda, setBusqueda }) {
   const [cartCount, setCartCount] = useState(0);
-  const [username, setUsername] = useState(null);
   const location = useLocation();
+  const hayCarrito = useCarritoPresente();
+  const { usuario, logout } = useAuth(); 
 
   const mostrarBuscador = location.pathname === '/productos';
   const esCarrito = location.pathname === '/carrito';
   const esLogin = location.pathname === '/login';
   const esRegistro = location.pathname === '/registro';
   const soloLogo = esLogin || esRegistro;
-  const hayCarrito = cartCount > 0;
 
   useEffect(() => {
-    const actualizarContadorYUsuario = () => {
+    const actualizarContador = () => {
       try {
-        const usuario = JSON.parse(localStorage.getItem("usuario"));
-        setUsername(usuario?.username || usuario?.nombre || usuario?.email || null);
-
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
         const totalItems = Array.isArray(cart)
           ? cart.reduce((acc, item) => acc + (item.qty || 1), 0)
           : 0;
         setCartCount(totalItems);
-      } catch (error) {
-        console.error("Error leyendo carrito o usuario:", error);
+      } catch {
         setCartCount(0);
-        setUsername(null);
       }
     };
 
-    actualizarContadorYUsuario();
-    window.addEventListener('carritoActualizado', actualizarContadorYUsuario);
-    return () => window.removeEventListener('carritoActualizado', actualizarContadorYUsuario);
+    actualizarContador();
+    window.addEventListener('carritoActualizado', actualizarContador);
+    return () => window.removeEventListener('carritoActualizado', actualizarContador);
   }, []);
 
   const handleSearch = (e) => e.preventDefault();
 
   const cerrarSesion = () => {
     if (window.confirm("¿Deseás cerrar sesión?")) {
-      localStorage.removeItem("usuario");
-      localStorage.removeItem("cart");
-      window.dispatchEvent(new Event("carritoActualizado"));
-      setUsername(null);
+      logout();
     }
   };
 
@@ -58,11 +52,9 @@ export default function Navbar({ busqueda, setBusqueda }) {
         </Link>
 
         {soloLogo ? null : esCarrito ? (
-          hayCarrito && (
-            <div className="ms-auto navbar-catalogo">
-              <BotonVerCatalogo />
-            </div>
-          )
+          <div className="ms-auto navbar-catalogo">
+            {hayCarrito && <BotonVerCatalogo />}
+          </div>
         ) : (
           <>
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -85,9 +77,9 @@ export default function Navbar({ busqueda, setBusqueda }) {
 
               <ul className="navbar-nav ms-auto">
                 <li className="nav-item d-flex align-items-center">
-                  {username && (
+                  {usuario && (
                     <span className="fw-bold text-success me-2" style={{ paddingBottom: '20px' }}>
-                      {username}
+                      {usuario.username || usuario.nombre || usuario.email}
                     </span>
                   )}
 
@@ -120,7 +112,7 @@ export default function Navbar({ busqueda, setBusqueda }) {
                     </div>
                   </Link>
 
-                  {!username ? (
+                  {!usuario ? (
                     <Link className="nav-link fw-bold text-success" to="/login" style={{ paddingBottom: '30px' }}>
                       Iniciar Sesión
                     </Link>

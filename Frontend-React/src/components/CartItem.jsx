@@ -4,13 +4,7 @@ export default function CartItem({ item, setQty, removeFromCart, money }) {
   const handleRemove = () => {
     if (window.confirm('¿Desea eliminar el producto del carrito?')) {
       removeFromCart(item.id);
-
-      const nuevoCarrito = JSON.parse(localStorage.getItem('cart')) || [];
       window.dispatchEvent(new Event('carritoActualizado'));
-
-      if (nuevoCarrito.length === 0) {
-        window.location.reload();
-      }
     }
   };
 
