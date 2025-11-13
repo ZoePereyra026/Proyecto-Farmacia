@@ -3,6 +3,7 @@ import { useAuth } from '../hooks/useAuth';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import { useNavigate } from 'react-router-dom';
+import '../../css/style_comprobante.css';
 
 export default function Comprobante() {
   const { usuario } = useAuth();
@@ -36,22 +37,10 @@ export default function Comprobante() {
   };
 
   return (
-    <div
-      id="comprobante"
-      style={{
-        fontFamily: 'Segoe UI, sans-serif',
-        backgroundColor: '#f9f9f9',
-        padding: '2rem',
-        maxWidth: '600px',
-        margin: '2rem auto',
-        borderRadius: '8px',
-        boxShadow: '0 0 10px rgba(0,0,0,0.1)',
-        color: '#333'
-      }}
-    >
-      <h2 style={{ textAlign: 'center', marginBottom: '1rem' }}>Comprobante de Compra</h2>
+    <div id="comprobante" className="comprobante-wrapper">
+      <h2 className="comprobante-titulo">Comprobante de Compra</h2>
 
-      <div style={{ marginBottom: '1rem' }}>
+      <div className="comprobante-datos">
         <p><strong>ID de usuario:</strong> {usuario?.id}</p>
         <p><strong>Nombre:</strong> {usuario?.username || usuario?.nombre || usuario?.email}</p>
         <p><strong>Fecha:</strong> {fecha}</p>
@@ -59,10 +48,10 @@ export default function Comprobante() {
         <p><strong>N° de ticket:</strong> #{nroTicket}</p>
       </div>
 
-      <hr style={{ margin: '1rem 0' }} />
+      <hr className="comprobante-separador" />
 
-      <h4 style={{ marginBottom: '0.5rem' }}>Productos comprados:</h4>
-      <ul style={{ paddingLeft: '1.2rem', marginBottom: '1rem' }}>
+      <h4 className="comprobante-subtitulo">Productos comprados:</h4>
+      <ul className="comprobante-lista">
         {carrito.map((item, i) => (
           <li key={i}>
             {item.nombre} — Cantidad: {item.qty} — Precio unitario: ${item.precio}
@@ -70,30 +59,14 @@ export default function Comprobante() {
         ))}
       </ul>
 
-      <p style={{ fontSize: '1.1rem', fontWeight: 'bold' }}>Total: ${total}</p>
+      <p className="comprobante-total">Total: ${total}</p>
 
-      <p style={{
-        marginTop: '2rem',
-        fontSize: '1.2rem',
-        textAlign: 'center',
-        color: '#2e7d32'
-      }}>
+      <p className="comprobante-gracias">
         Gracias por confiar en Farmacia San Martín 💚
       </p>
 
-      <div style={{ textAlign: 'center', marginTop: '2rem' }}>
-        <button
-          onClick={exportarPDF}
-          style={{
-            backgroundColor: '#00B77A',
-            color: '#fff',
-            border: 'none',
-            padding: '0.6rem 1.2rem',
-            borderRadius: '4px',
-            cursor: 'pointer',
-            fontSize: '1rem'
-          }}
-        >
+      <div className="comprobante-boton-wrapper">
+        <button onClick={exportarPDF} className="comprobante-boton">
           Exportar comprobante como PDF
         </button>
       </div>

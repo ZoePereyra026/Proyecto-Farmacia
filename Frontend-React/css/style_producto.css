@@ -297,6 +297,7 @@ html, body {
   .btn-volver {
     width: 100%;
     max-width: 320px;
+    margin-bottom: 20px;
     font-size: clamp(14px, 4vw, 16px);
     padding: 10px 20px;
   }
@@ -393,6 +394,7 @@ html, body {
   .btn-volver {
     width: 100%;
     max-width: 240px;
+    margin-bottom: 20px;
     font-size: clamp(12px, 3.5vw, 14px);
     padding: 8px 16px;
   }
